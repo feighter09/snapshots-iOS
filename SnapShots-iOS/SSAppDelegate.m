@@ -7,13 +7,14 @@
 //
 
 #import "SSAppDelegate.h"
+#import "CameraServer.h"
 
 @implementation SSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    return YES;
+  [[CameraServer server] startup];
+  return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -26,6 +27,7 @@
 {
   // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
   // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+  [[CameraServer server] shutdown];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

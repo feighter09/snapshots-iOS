@@ -11,6 +11,7 @@
 @interface SSCameraViewController ()
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
 - (IBAction)takePhoto:(id)sender;
 
 @end
@@ -20,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  
   
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -44,8 +46,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
   
   UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-  self.imageView.image = chosenImage;
-  
+  [self.imageView setImage:chosenImage];
   [picker dismissViewControllerAnimated:YES completion:nil];
 }
 

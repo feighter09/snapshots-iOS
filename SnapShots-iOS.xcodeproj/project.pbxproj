@@ -22,6 +22,16 @@
 		7A15254E18938CF30052056F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7A15254C18938CF30052056F /* InfoPlist.strings */; };
 		7A15255018938CF30052056F /* SnapShots_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A15254F18938CF30052056F /* SnapShots_iOSTests.m */; };
 		7A15255A18938D040052056F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A15255918938D040052056F /* AVFoundation.framework */; };
+		7A15255D1893942D0052056F /* SSSnapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A15255C1893942D0052056F /* SSSnapsViewController.m */; };
+		7AA9276718942CE60078916A /* AVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9276018942CE60078916A /* AVEncoder.mm */; };
+		7AA9276818942CE60078916A /* MP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9276218942CE60078916A /* MP4Atom.m */; };
+		7AA9276918942CE60078916A /* NALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9276318942CE60078916A /* NALUnit.cpp */; };
+		7AA9276A18942CE60078916A /* VideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9276618942CE60078916A /* VideoEncoder.m */; };
+		7AA9277218942D8C0078916A /* RTSPClientConnection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9276D18942D8C0078916A /* RTSPClientConnection.mm */; };
+		7AA9277318942D8C0078916A /* RTSPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9276F18942D8C0078916A /* RTSPMessage.m */; };
+		7AA9277418942D8C0078916A /* RTSPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9277118942D8C0078916A /* RTSPServer.m */; };
+		7AA92777189430F70078916A /* CameraServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA92776189430F70078916A /* CameraServer.m */; };
+		CA45081F80CF4112B6EE9BA8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BDD8EDA0FF4E11958C16EC /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18BDD8EDA0FF4E11958C16EC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		23CB63ACE32C4E6F92576434 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		7A15252118938CF30052056F /* SnapShots-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SnapShots-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A15252418938CF30052056F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7A15252618938CF30052056F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,6 +67,24 @@
 		7A15254D18938CF30052056F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7A15254F18938CF30052056F /* SnapShots_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnapShots_iOSTests.m; sourceTree = "<group>"; };
 		7A15255918938D040052056F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7A15255B1893942D0052056F /* SSSnapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSSnapsViewController.h; path = "../../Snapshots-iOS/SnapShots-iOS/SSSnapsViewController.h"; sourceTree = "<group>"; };
+		7A15255C1893942D0052056F /* SSSnapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSSnapsViewController.m; path = "../../Snapshots-iOS/SnapShots-iOS/SSSnapsViewController.m"; sourceTree = "<group>"; };
+		7AA9275F18942CE60078916A /* AVEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVEncoder.h; sourceTree = "<group>"; };
+		7AA9276018942CE60078916A /* AVEncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AVEncoder.mm; sourceTree = "<group>"; };
+		7AA9276118942CE60078916A /* MP4Atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MP4Atom.h; sourceTree = "<group>"; };
+		7AA9276218942CE60078916A /* MP4Atom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MP4Atom.m; sourceTree = "<group>"; };
+		7AA9276318942CE60078916A /* NALUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NALUnit.cpp; sourceTree = "<group>"; };
+		7AA9276418942CE60078916A /* NALUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NALUnit.h; sourceTree = "<group>"; };
+		7AA9276518942CE60078916A /* VideoEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoEncoder.h; sourceTree = "<group>"; };
+		7AA9276618942CE60078916A /* VideoEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoEncoder.m; sourceTree = "<group>"; };
+		7AA9276C18942D8C0078916A /* RTSPClientConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSPClientConnection.h; sourceTree = "<group>"; };
+		7AA9276D18942D8C0078916A /* RTSPClientConnection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RTSPClientConnection.mm; sourceTree = "<group>"; };
+		7AA9276E18942D8C0078916A /* RTSPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSPMessage.h; sourceTree = "<group>"; };
+		7AA9276F18942D8C0078916A /* RTSPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSPMessage.m; sourceTree = "<group>"; };
+		7AA9277018942D8C0078916A /* RTSPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSPServer.h; sourceTree = "<group>"; };
+		7AA9277118942D8C0078916A /* RTSPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSPServer.m; sourceTree = "<group>"; };
+		7AA92775189430F70078916A /* CameraServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraServer.h; sourceTree = "<group>"; };
+		7AA92776189430F70078916A /* CameraServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraServer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +96,7 @@
 				7A15252718938CF30052056F /* CoreGraphics.framework in Frameworks */,
 				7A15252918938CF30052056F /* UIKit.framework in Frameworks */,
 				7A15252518938CF30052056F /* Foundation.framework in Frameworks */,
+				CA45081F80CF4112B6EE9BA8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +120,7 @@
 				7A15254918938CF30052056F /* SnapShots-iOSTests */,
 				7A15252318938CF30052056F /* Frameworks */,
 				7A15252218938CF30052056F /* Products */,
+				23CB63ACE32C4E6F92576434 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +141,7 @@
 				7A15252618938CF30052056F /* CoreGraphics.framework */,
 				7A15252818938CF30052056F /* UIKit.framework */,
 				7A15254318938CF30052056F /* XCTest.framework */,
+				18BDD8EDA0FF4E11958C16EC /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,11 +149,14 @@
 		7A15252A18938CF30052056F /* SnapShots-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				7AA92775189430F70078916A /* CameraServer.h */,
+				7AA92776189430F70078916A /* CameraServer.m */,
+				7AA9276B18942D610078916A /* RTSP */,
+				7AA9275E18942CCC0078916A /* AVEncoder */,
 				7A15253318938CF30052056F /* SSAppDelegate.h */,
 				7A15253418938CF30052056F /* SSAppDelegate.m */,
 				7A15253618938CF30052056F /* Main.storyboard */,
-				7A15253918938CF30052056F /* SSCameraViewController.h */,
-				7A15253A18938CF30052056F /* SSCameraViewController.m */,
+				7A15255E1893943C0052056F /* View Controllers */,
 				7A15253C18938CF30052056F /* Images.xcassets */,
 				7A15252B18938CF30052056F /* Supporting Files */,
 			);
@@ -156,6 +192,45 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7A15255E1893943C0052056F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7A15253918938CF30052056F /* SSCameraViewController.h */,
+				7A15253A18938CF30052056F /* SSCameraViewController.m */,
+				7A15255B1893942D0052056F /* SSSnapsViewController.h */,
+				7A15255C1893942D0052056F /* SSSnapsViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		7AA9275E18942CCC0078916A /* AVEncoder */ = {
+			isa = PBXGroup;
+			children = (
+				7AA9275F18942CE60078916A /* AVEncoder.h */,
+				7AA9276018942CE60078916A /* AVEncoder.mm */,
+				7AA9276118942CE60078916A /* MP4Atom.h */,
+				7AA9276218942CE60078916A /* MP4Atom.m */,
+				7AA9276318942CE60078916A /* NALUnit.cpp */,
+				7AA9276418942CE60078916A /* NALUnit.h */,
+				7AA9276518942CE60078916A /* VideoEncoder.h */,
+				7AA9276618942CE60078916A /* VideoEncoder.m */,
+			);
+			name = AVEncoder;
+			sourceTree = "<group>";
+		};
+		7AA9276B18942D610078916A /* RTSP */ = {
+			isa = PBXGroup;
+			children = (
+				7AA9276C18942D8C0078916A /* RTSPClientConnection.h */,
+				7AA9276D18942D8C0078916A /* RTSPClientConnection.mm */,
+				7AA9276E18942D8C0078916A /* RTSPMessage.h */,
+				7AA9276F18942D8C0078916A /* RTSPMessage.m */,
+				7AA9277018942D8C0078916A /* RTSPServer.h */,
+				7AA9277118942D8C0078916A /* RTSPServer.m */,
+			);
+			name = RTSP;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -163,9 +238,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A15255318938CF30052056F /* Build configuration list for PBXNativeTarget "SnapShots-iOS" */;
 			buildPhases = (
+				EE2B52B6A1E24440AD4DD6E4 /* Check Pods Manifest.lock */,
 				7A15251D18938CF30052056F /* Sources */,
 				7A15251E18938CF30052056F /* Frameworks */,
 				7A15251F18938CF30052056F /* Resources */,
+				10305B2C4EB2470CB7693852 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -249,14 +326,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		10305B2C4EB2470CB7693852 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE2B52B6A1E24440AD4DD6E4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7A15251D18938CF30052056F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AA9276A18942CE60078916A /* VideoEncoder.m in Sources */,
+				7AA9277218942D8C0078916A /* RTSPClientConnection.mm in Sources */,
+				7AA9276918942CE60078916A /* NALUnit.cpp in Sources */,
+				7AA9277418942D8C0078916A /* RTSPServer.m in Sources */,
+				7A15255D1893942D0052056F /* SSSnapsViewController.m in Sources */,
+				7AA92777189430F70078916A /* CameraServer.m in Sources */,
 				7A15253B18938CF30052056F /* SSCameraViewController.m in Sources */,
 				7A15253518938CF30052056F /* SSAppDelegate.m in Sources */,
 				7A15253118938CF30052056F /* main.m in Sources */,
+				7AA9276818942CE60078916A /* MP4Atom.m in Sources */,
+				7AA9277318942D8C0078916A /* RTSPMessage.m in Sources */,
+				7AA9276718942CE60078916A /* AVEncoder.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +499,7 @@
 		};
 		7A15255418938CF30052056F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23CB63ACE32C4E6F92576434 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -393,6 +513,7 @@
 		};
 		7A15255518938CF30052056F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23CB63ACE32C4E6F92576434 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -465,6 +586,7 @@
 				7A15255518938CF30052056F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7A15255618938CF30052056F /* Build configuration list for PBXNativeTarget "SnapShots-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -473,6 +595,7 @@
 				7A15255818938CF30052056F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
