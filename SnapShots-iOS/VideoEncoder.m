@@ -30,7 +30,7 @@
     _writer = [AVAssetWriter assetWriterWithURL:url fileType:AVFileTypeQuickTimeMovie error:nil];
     NSDictionary* settings = [NSDictionary dictionaryWithObjectsAndKeys:
                               AVVideoCodecH264, AVVideoCodecKey,
-                              [NSNumber numberWithInt: width], AVVideoWidthKey,
+                              [NSNumber numberWithInt:width], AVVideoWidthKey,
                               [NSNumber numberWithInt:height], AVVideoHeightKey,
                               [NSDictionary dictionaryWithObjectsAndKeys:
                                     [NSNumber numberWithBool:NO], AVVideoAllowFrameReorderingKey, nil],
@@ -43,7 +43,22 @@
 
 - (void) finishWithCompletionHandler:(void (^)(void))handler
 {
-    [_writer finishWritingWithCompletionHandler: handler];
+//  if ([_writer status] == AVAssetWriterStatusCompleted) {
+//    NSLog(@"Writer status: completed");
+//  } else if ([_writer status] == AVAssetWriterStatusCancelled) {
+//    NSLog(@"Writer status: cancelled");
+//  } else if ([_writer status] == AVAssetWriterStatusFailed) {
+//    NSLog(@"Writer status: failed");
+//  }
+//  if ([_writer status] != AVAssetWriterStatusWriting && [_writer status] != AVAssetWriterStatusUnknown) {
+//    [_writer finishWritingWithCompletionHandler: handler];
+//    [_writerInput setMarksOutputTrackAsEnabled:YES];
+//    [_writerInput markAsFinished];
+//  }
+  
+  [_writer finishWritingWithCompletionHandler:handler];
+//  [_writerInput setMarksOutputTrackAsEnabled:YES];
+  [_writerInput markAsFinished];
 }
 
 - (BOOL) encodeFrame:(CMSampleBufferRef) sampleBuffer

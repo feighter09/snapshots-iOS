@@ -14,6 +14,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [[CameraServer server] startup];
+
+  [[NSNotificationCenter defaultCenter] addObserverForName:@"Start Camera Server" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+    [[CameraServer server] startup];
+  }];
+  [[NSNotificationCenter defaultCenter] addObserverForName:@"Stop Camera Server" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+    [[CameraServer server] shutdown];
+  }];
   return YES;
 }
 							
@@ -27,7 +34,6 @@
 {
   // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
   // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-  [[CameraServer server] shutdown];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

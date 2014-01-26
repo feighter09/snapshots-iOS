@@ -44,49 +44,49 @@ static CameraServer* theServer;
 
 - (void) startup
 {
-    if (_captureSession == nil)
-    {
-        NSLog(@"Starting up server");
-      
-      NSError *error;
-      AVCaptureDeviceInput *captureInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self frontCamera] error:&error];
-      
-      AVCaptureVideoDataOutput *captureOutput = [[AVCaptureVideoDataOutput alloc] init];
-      _captureQueue = dispatch_queue_create("uk.co.gdcl.avencoder.capture", DISPATCH_QUEUE_SERIAL);
-      [captureOutput setSampleBufferDelegate:self queue:_captureQueue];
-      [captureOutput setVideoSettings:@{(NSString *)kCVPixelBufferPixelFormatTypeKey: [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA]}]; // that looks bad
-      
-      _encoder = [AVEncoder encoderForHeight:480 andWidth:720];
-      [_encoder encodeWithBlock:^int(NSArray* data, double pts) {
-        if (_rtsp != nil)
-        {
-          _rtsp.bitrate = _encoder.bitspersecond;
-          [_rtsp onVideoData:data time:pts];
-        }
-        return 0;
-      } onParams:^int(NSData *data) {
-        _rtsp = [RTSPServer setupListener:data];
-        return 0;
-      }];
-      
-      _captureSession = [[AVCaptureSession alloc] init];
-      if ([_captureSession canAddInput:captureInput] && [_captureSession canAddOutput:captureOutput]) {
-        [_captureSession addInput:captureInput];
-        [_captureSession addOutput:captureOutput];
-      } else {
-        [[[UIAlertView alloc] initWithTitle:@"Well Shit"
-                                    message:nil
-                                   delegate:nil
-                          cancelButtonTitle:@"Damn man."
-                          otherButtonTitles:nil] show];
-      }
-      
-      [_captureSession setSessionPreset:AVCaptureSessionPresetMedium];
-      [_captureSession startRunning];
-      
-      _preview = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
-      [_preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    if (_captureSession != nil) {
+      return;
     }
+  
+    NSLog(@"Starting up server");
+    NSError *error;
+    AVCaptureDeviceInput *captureInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self frontCamera] error:&error];
+    
+    AVCaptureVideoDataOutput *captureOutput = [[AVCaptureVideoDataOutput alloc] init];
+    _captureQueue = dispatch_queue_create("uk.co.gdcl.avencoder.capture", DISPATCH_QUEUE_SERIAL);
+    [captureOutput setSampleBufferDelegate:self queue:_captureQueue];
+    [captureOutput setVideoSettings:@{(NSString *)kCVPixelBufferPixelFormatTypeKey: [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA]}]; // that looks bad
+    
+    _encoder = [AVEncoder encoderForHeight:480 andWidth:720];
+    [_encoder encodeWithBlock:^int(NSArray* data, double pts) {
+      if (_rtsp != nil)
+      {
+        _rtsp.bitrate = _encoder.bitspersecond;
+        [_rtsp onVideoData:data time:pts];
+      }
+      return 0;
+    } onParams:^int(NSData *data) {
+      _rtsp = [RTSPServer setupListener:data];
+      return 0;
+    }];
+    
+    _captureSession = [[AVCaptureSession alloc] init];
+    if ([_captureSession canAddInput:captureInput] && [_captureSession canAddOutput:captureOutput]) {
+      [_captureSession addInput:captureInput];
+      [_captureSession addOutput:captureOutput];
+    } else {
+      [[[UIAlertView alloc] initWithTitle:@"Well Shit"
+                                  message:nil
+                                 delegate:nil
+                        cancelButtonTitle:@"Damn man."
+                        otherButtonTitles:nil] show];
+    }
+    
+    [_captureSession setSessionPreset:AVCaptureSessionPresetHigh];
+    [_captureSession startRunning];
+    
+    _preview = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
+    [_preview setVideoGravity:AVLayerVideoGravityResizeAspectFill];
 }
 
 - (AVCaptureDevice *)frontCamera {
@@ -129,7 +129,7 @@ static CameraServer* theServer;
     }
     if (_encoder)
     {
-        [ _encoder shutdown];
+        [_encoder shutdown];
     }
 }
 

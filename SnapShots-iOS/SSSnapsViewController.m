@@ -8,6 +8,7 @@
 
 #import "SSSnapsViewController.h"
 #import "CameraServer.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface SSSnapsViewController ()
 
@@ -31,6 +32,21 @@
   [super viewDidLoad];
   [_snapsTable setDataSource:self];
   [_snapsTable setDelegate:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(handleMPMoviePlayerPlaybackDidFinish:)
+                                               name:MPMoviePlayerPlaybackDidFinishNotification
+                                             object:nil];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"Start Camera Server" object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:MPMoviePlayerPlaybackDidFinishNotification
+                                                object:nil];
 }
 
 #pragma mark - Table View
@@ -82,35 +98,50 @@
 }
 
 - (void)hideSnap {
+
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"Stop Camera Server" object:nil];
+  NSString *filepath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/video.mp4"];
+  NSLog(@"File: %@", filepath);
+  NSURL *fileURL = [NSURL fileURLWithPath:filepath];
+  MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:fileURL];
+  [moviePlayerController.moviePlayer setMovieSourceType:MPMovieSourceTypeFile];
+  NSLog(@"Error: %@", [moviePlayerController.moviePlayer errorLog]);
+  NSLog(@"Duration: %f", [moviePlayerController.moviePlayer duration]);
+  
+  [self presentMoviePlayerViewControllerAnimated:moviePlayerController];
+  [moviePlayerController.moviePlayer prepareToPlay];
+  [moviePlayerController.moviePlayer play];
+  [moviePlayerController.moviePlayer errorLog];
+  NSLog(@"Error: %@", [moviePlayerController.moviePlayer errorLog]);
   [_snapView removeFromSuperview];
 }
 
 #pragma mark - Video Recording
-
 
 - (void) startCapture {
   AVCaptureVideoPreviewLayer *preview = [[CameraServer server] getPreviewLayer];
   [preview removeFromSuperlayer];
   preview.frame = _snapView.bounds;
   [[preview connection] setVideoOrientation:AVCaptureVideoOrientationPortrait];
-  
-  [_snapView.layer addSublayer:preview];
-  
-//  self.serverAddress.text = [[CameraServer server] getURL];
+  NSLog(@"url: %@", [[CameraServer server] getURL]);
 }
 
-// ----- Demo Code ------//
-//
-//-(void) startRecording
-//{
-//  [self initCaptureSession];
-//  
-//  NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
-//                                       pathForResource:@"video"
-//                                       ofType:@"mp4"]];
-//  [self playMovieAtURL:url];
-//  
-//  [self startVideoRecording];
-//}
-
+- (void)handleMPMoviePlayerPlaybackDidFinish:(NSNotification *)notification
+{
+  NSDictionary *notificationUserInfo = [notification userInfo];
+  NSNumber *resultValue = [notificationUserInfo objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
+  MPMovieFinishReason reason = [resultValue intValue];
+  if (reason == MPMovieFinishReasonPlaybackError)
+  {
+    NSError *mediaPlayerError = [notificationUserInfo objectForKey:@"error"];
+    if (mediaPlayerError)
+    {
+      NSLog(@"playback failed with error description: %@", [mediaPlayerError localizedDescription]);
+    }
+    else
+    {
+      NSLog(@"playback failed without any given reason");
+    }
+  }
+}
 @end

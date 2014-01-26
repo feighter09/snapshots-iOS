@@ -86,15 +86,25 @@ static unsigned int to_host(unsigned char* p)
 
 - (NSString*) makeFilename
 {
-    NSString* filename = [NSString stringWithFormat:@"capture%d.mp4", _currentFile];
-    NSString* path = [NSTemporaryDirectory() stringByAppendingPathComponent:filename];
-    return path;
+//    NSString* filename = [NSString stringWithFormat:@"capture%d.mp4", _currentFile];
+  
+  NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/video.mp4"];
+  NSError *error;
+  [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+  if (error) {
+    [[[UIAlertView alloc] initWithTitle:@"Uh oh"
+                                message:@"Error deleting old video"
+                               delegate:nil
+                      cancelButtonTitle:@"Ok"
+                      otherButtonTitles:nil] show];
+  }
+  return path;
 }
 - (void) initForHeight:(int)height andWidth:(int)width
 {
     _height = height;
     _width = width;
-    NSString* path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"params.mp4"];
+    NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/params.mp4"];
     _headerWriter = [VideoEncoder encoderForPath:path Height:height andWidth:width];
     _times = [NSMutableArray arrayWithCapacity:10];
     
@@ -206,7 +216,8 @@ static unsigned int to_host(unsigned char* p)
         _swapping = NO;
         _inputFile = [NSFileHandle fileHandleForReadingAtPath:_writer.path];
         _readQueue = dispatch_queue_create("uk.co.gdcl.avencoder.read", DISPATCH_QUEUE_SERIAL);
-        
+      
+      NSLog(@"File: %@", _writer.path);
         _readSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, [_inputFile fileDescriptor], 0, _readQueue);
         dispatch_source_set_event_handler(_readSource, ^{
             [self onFileUpdate];
@@ -487,14 +498,14 @@ static unsigned int to_host(unsigned char* p)
         if (_headerWriter)
         {
             [_headerWriter finishWithCompletionHandler:^{
-                _headerWriter = nil;
             }];
+          _headerWriter = nil;
         }
         if (_writer)
         {
-            [_writer finishWithCompletionHandler:^{
-                _writer = nil;
-            }];
+          [_writer finishWithCompletionHandler:^{
+          }];
+          _writer = nil;
         }
         // !! wait for these to finish before returning and delete temp files
     }
