@@ -57,7 +57,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Snap Cell"];
   NSDictionary *snap = [_snaps objectAtIndex:indexPath.row];
-  [cell.textLabel setText:[snap objectForKey:@"from"]];
+  [cell.textLabel setText:@"some text"];
+//  [cell.textLabel setText:[snap objectForKey:@"from"]];
   [cell.detailTextLabel setText:[snap objectForKey:@"when"]];
   
   UILongPressGestureRecognizer *tapRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
@@ -68,7 +69,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [_snaps count];
+  return 4;
+  //  return [_snaps count];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,6 +82,7 @@
   
   if (sender.state == UIGestureRecognizerStateBegan) {
     NSLog(@"Tap start");
+//    [[CameraServer server] startup];
     [self showSnap];
   } else if (sender.state == UIGestureRecognizerStateEnded) {
     NSLog(@"Tap end");
@@ -108,7 +111,7 @@
   if (_snapView == nil) {
     _snapView = [[UIView alloc] initWithFrame:self.view.frame];
   }
-  [_snapView setBackgroundColor:[UIColor colorWithPatternImage:img]];
+  [_snapView setBackgroundColor:[UIColor blueColor]];
   [self.view addSubview:_snapView];
 
   //maybe background later
@@ -118,6 +121,7 @@
 - (void)hideSnap {
 
   [[NSNotificationCenter defaultCenter] postNotificationName:@"Stop Camera Server" object:nil];
+//  [[CameraServer server] shutdown];
   NSString *filepath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/video.mp4"];
   NSLog(@"File: %@", filepath);
   NSURL *fileURL = [NSURL fileURLWithPath:filepath];
@@ -131,6 +135,7 @@
   [moviePlayerController.moviePlayer play];
   [moviePlayerController.moviePlayer errorLog];
   NSLog(@"Error: %@", [moviePlayerController.moviePlayer errorLog]);
+  [SSNetworking sendVideo];
   [_snapView removeFromSuperview];
 }
 

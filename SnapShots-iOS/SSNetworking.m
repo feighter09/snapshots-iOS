@@ -9,7 +9,7 @@
 #import "SSNetworking.h"
 
 //static NSString *baseURL = @"http://snapchatshots.herokuapp.com/";
-static NSString *baseURL = @"http://54.203.205.223/";
+static NSString *baseURL = @"http://192.168.1.199:5000/";
 
 @implementation SSNetworking
 
@@ -33,7 +33,7 @@ static NSString *baseURL = @"http://54.203.205.223/";
   
   AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
   [manager POST:[baseURL stringByAppendingString:@"send/image"] parameters:[self getParams] constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFormData:imageToUpload name:@"file"];
+    [formData appendPartWithFileData:imageToUpload name:@"file" fileName:@"image.jpeg" mimeType:@"image/jpeg"]; 
   } success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSLog(@"Success: %@", responseObject);
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -43,10 +43,13 @@ static NSString *baseURL = @"http://54.203.205.223/";
 
 + (void)sendVideo {
   
-  NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Directory/video.mp4"];
+  NSURL *filePath = [NSURL URLWithString:[NSHomeDirectory() stringByAppendingPathComponent:@"Directory/video.mp4"]];
+  NSData *data = [NSData dataWithContentsOfURL:filePath];
   AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
   [manager POST:[baseURL stringByAppendingString:@"send/video"] parameters:[self getParams] constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFileURL:[NSURL URLWithString:filePath] name:@"file" error:nil];
+//    [formData appendPartWithFormData:data name:@"video"];
+//    [formData appendPartWithFileURL:filePath name:@"file" fileName:@"video.mp4" mimeType:@"video/mp4" error:nil];
+//    [formData appendPartWithFileData:data name:@"file" fileName:@"video.mp4" mimeType:@"video/mp4"];
   } success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSLog(@"Success: %@", responseObject);
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
