@@ -76,6 +76,7 @@
 		7A3B49F51894C0E300EE8EC0 /* SSNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSNetworking.m; sourceTree = "<group>"; };
 		7A3B49F71894C17400EE8EC0 /* SSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLoginViewController.h; sourceTree = "<group>"; };
 		7A3B49F81894C17400EE8EC0 /* SSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLoginViewController.m; sourceTree = "<group>"; };
+		7A3B49FA1894D35A00EE8EC0 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		7AA9275F18942CE60078916A /* AVEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVEncoder.h; sourceTree = "<group>"; };
 		7AA9276018942CE60078916A /* AVEncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AVEncoder.mm; sourceTree = "<group>"; };
 		7AA9276118942CE60078916A /* MP4Atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MP4Atom.h; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 		7A15252318938CF30052056F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A3B49FA1894D35A00EE8EC0 /* libPods-AFNetworking.a */,
 				7AA92778189440930078916A /* MediaPlayer.framework */,
 				7A15255918938D040052056F /* AVFoundation.framework */,
 				7A15252418938CF30052056F /* Foundation.framework */,

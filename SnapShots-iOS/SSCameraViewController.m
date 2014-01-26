@@ -40,7 +40,7 @@
 - (IBAction)takePhoto:(id)sender {
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
   [picker setDelegate:self];
-  [picker setAllowsEditing:NO];
+  [picker setAllowsEditing:YES];
   [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
   
   [self presentViewController:picker animated:YES completion:nil];
@@ -52,7 +52,9 @@
   NSLog(@"here");
   UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
   [_imageView setImage:chosenImage];
-  [picker dismissViewControllerAnimated:YES completion:nil];
+  [picker dismissViewControllerAnimated:YES completion:^{
+    [SSNetworking sendImage:chosenImage];
+  }];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

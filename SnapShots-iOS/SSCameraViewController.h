@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SSNetworking.h"
 
 @interface SSCameraViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 

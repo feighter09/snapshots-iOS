@@ -50,15 +50,16 @@
 //  } else if ([_writer status] == AVAssetWriterStatusFailed) {
 //    NSLog(@"Writer status: failed");
 //  }
-//  if ([_writer status] != AVAssetWriterStatusWriting && [_writer status] != AVAssetWriterStatusUnknown) {
-//    [_writer finishWritingWithCompletionHandler: handler];
-//    [_writerInput setMarksOutputTrackAsEnabled:YES];
-//    [_writerInput markAsFinished];
-//  }
   
-  [_writer finishWritingWithCompletionHandler:handler];
-//  [_writerInput setMarksOutputTrackAsEnabled:YES];
-  [_writerInput markAsFinished];
+//  while ([_writer status] == AVAssetWriterStatusWriting || [_writer status] == AVAssetWriterStatusUnknown);
+  if ([_writer status] != AVAssetWriterStatusWriting &&
+        [_writer status] != AVAssetWriterStatusUnknown) {
+    [_writer finishWritingWithCompletionHandler:handler];
+    [_writerInput setMarksOutputTrackAsEnabled:YES];
+    [_writerInput markAsFinished];
+  } else {
+//    [self finishWithCompletionHandler:handler];
+  }
 }
 
 - (BOOL) encodeFrame:(CMSampleBufferRef) sampleBuffer
