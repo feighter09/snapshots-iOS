@@ -7,10 +7,12 @@
 //
 
 #import "SSCameraViewController.h"
+#import "SSLoginViewController.h"
 
 @interface SSCameraViewController ()
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UIImage *chosenImage;
 
 - (IBAction)takePhoto:(id)sender;
 
@@ -20,10 +22,13 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
   
-  
-	// Do any additional setup after loading the view, typically from a nib.
+  if ([[NSUserDefaults standardUserDefaults] objectForKey:@"username"] == nil ||
+        [[NSUserDefaults standardUserDefaults] objectForKey:@"password"] == nil) {
+//    SSLoginViewController *vc = [[SSLoginViewController alloc] init];
+    [self performSegueWithIdentifier:@"Log In" sender:self];
+  }
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,9 +49,9 @@
 #pragma mark - Image Picker Delegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-  
+  NSLog(@"here");
   UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-  [self.imageView setImage:chosenImage];
+  [_imageView setImage:chosenImage];
   [picker dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -23,6 +23,8 @@
 		7A15255018938CF30052056F /* SnapShots_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A15254F18938CF30052056F /* SnapShots_iOSTests.m */; };
 		7A15255A18938D040052056F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A15255918938D040052056F /* AVFoundation.framework */; };
 		7A15255D1893942D0052056F /* SSSnapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A15255C1893942D0052056F /* SSSnapsViewController.m */; };
+		7A3B49F61894C0E300EE8EC0 /* SSNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3B49F51894C0E300EE8EC0 /* SSNetworking.m */; };
+		7A3B49F91894C17400EE8EC0 /* SSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3B49F81894C17400EE8EC0 /* SSLoginViewController.m */; };
 		7AA9276718942CE60078916A /* AVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9276018942CE60078916A /* AVEncoder.mm */; };
 		7AA9276818942CE60078916A /* MP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9276218942CE60078916A /* MP4Atom.m */; };
 		7AA9276918942CE60078916A /* NALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA9276318942CE60078916A /* NALUnit.cpp */; };
@@ -70,6 +72,10 @@
 		7A15255918938D040052056F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7A15255B1893942D0052056F /* SSSnapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSSnapsViewController.h; path = "../../Snapshots-iOS/SnapShots-iOS/SSSnapsViewController.h"; sourceTree = "<group>"; };
 		7A15255C1893942D0052056F /* SSSnapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSSnapsViewController.m; path = "../../Snapshots-iOS/SnapShots-iOS/SSSnapsViewController.m"; sourceTree = "<group>"; };
+		7A3B49F41894C0E300EE8EC0 /* SSNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSNetworking.h; sourceTree = "<group>"; };
+		7A3B49F51894C0E300EE8EC0 /* SSNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSNetworking.m; sourceTree = "<group>"; };
+		7A3B49F71894C17400EE8EC0 /* SSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLoginViewController.h; sourceTree = "<group>"; };
+		7A3B49F81894C17400EE8EC0 /* SSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLoginViewController.m; sourceTree = "<group>"; };
 		7AA9275F18942CE60078916A /* AVEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVEncoder.h; sourceTree = "<group>"; };
 		7AA9276018942CE60078916A /* AVEncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AVEncoder.mm; sourceTree = "<group>"; };
 		7AA9276118942CE60078916A /* MP4Atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MP4Atom.h; sourceTree = "<group>"; };
@@ -153,6 +159,7 @@
 		7A15252A18938CF30052056F /* SnapShots-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				7A3B49F31894C0A400EE8EC0 /* Utility */,
 				7AA92775189430F70078916A /* CameraServer.h */,
 				7AA92776189430F70078916A /* CameraServer.m */,
 				7AA9276B18942D610078916A /* RTSP */,
@@ -203,8 +210,19 @@
 				7A15253A18938CF30052056F /* SSCameraViewController.m */,
 				7A15255B1893942D0052056F /* SSSnapsViewController.h */,
 				7A15255C1893942D0052056F /* SSSnapsViewController.m */,
+				7A3B49F71894C17400EE8EC0 /* SSLoginViewController.h */,
+				7A3B49F81894C17400EE8EC0 /* SSLoginViewController.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		7A3B49F31894C0A400EE8EC0 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				7A3B49F41894C0E300EE8EC0 /* SSNetworking.h */,
+				7A3B49F51894C0E300EE8EC0 /* SSNetworking.m */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		7AA9275E18942CCC0078916A /* AVEncoder */ = {
@@ -372,9 +390,11 @@
 				7AA9277218942D8C0078916A /* RTSPClientConnection.mm in Sources */,
 				7AA9276918942CE60078916A /* NALUnit.cpp in Sources */,
 				7AA9277418942D8C0078916A /* RTSPServer.m in Sources */,
+				7A3B49F91894C17400EE8EC0 /* SSLoginViewController.m in Sources */,
 				7A15255D1893942D0052056F /* SSSnapsViewController.m in Sources */,
 				7AA92777189430F70078916A /* CameraServer.m in Sources */,
 				7A15253B18938CF30052056F /* SSCameraViewController.m in Sources */,
+				7A3B49F61894C0E300EE8EC0 /* SSNetworking.m in Sources */,
 				7A15253518938CF30052056F /* SSAppDelegate.m in Sources */,
 				7A15253118938CF30052056F /* main.m in Sources */,
 				7AA9276818942CE60078916A /* MP4Atom.m in Sources */,
