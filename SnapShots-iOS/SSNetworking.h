@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/AFHTTPRequestOperation.h>
+
 
 @interface SSNetworking : NSObject
+
++(void)getAllSnapsWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock
+                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failureBlock;
+
++ (void)sendImage:(UIImage *)img;
++ (void)sendVideo;
 
 @end

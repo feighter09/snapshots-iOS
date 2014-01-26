@@ -8,6 +8,7 @@
 
 #import "SSSnapsViewController.h"
 #import "CameraServer.h"
+#import "SSNetworking.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface SSSnapsViewController ()
@@ -15,6 +16,7 @@
 //@property (strong, nonatomic) AVCaptureSession *captureSession;
 @property (strong, nonatomic) IBOutlet UITableView *snapsTable;
 @property (strong, nonatomic) UIView *snapView;
+@property (nonatomic) NSUInteger selectedIndex;
 
 @end
 
@@ -32,6 +34,7 @@
   [super viewDidLoad];
   [_snapsTable setDataSource:self];
   [_snapsTable setDelegate:self];
+  [self loadSnaps];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -53,7 +56,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Snap Cell"];
-  [cell.textLabel setText:@"Here's some text"];
+  NSDictionary *snap = [_snaps objectAtIndex:indexPath.row];
+  [cell.textLabel setText:@"some text"];
+//  [cell.textLabel setText:[snap objectForKey:@"from"]];
+  [cell.detailTextLabel setText:[snap objectForKey:@"when"]];
   
   UILongPressGestureRecognizer *tapRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
   [tapRecognizer setMinimumPressDuration:0];
@@ -68,6 +74,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  _selectedIndex = indexPath.row;
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)sender {
@@ -75,6 +82,7 @@
   
   if (sender.state == UIGestureRecognizerStateBegan) {
     NSLog(@"Tap start");
+//    [[CameraServer server] startup];
     [self showSnap];
   } else if (sender.state == UIGestureRecognizerStateEnded) {
     NSLog(@"Tap end");
@@ -84,8 +92,21 @@
   }
 }
 
+#pragma mark - Data load 
+
+- (void)loadSnaps {
+  [SSNetworking getAllSnapsWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    _snaps = responseObject;
+    [_snapsTable reloadData];
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    NSLog(@"Error loading snaps: %@", error);
+  }];
+}
+
+#pragma mark - Snap show / hide actions
+
 - (void)showSnap {
-  UIImage *img = [[UIImage alloc] init];
+  UIImage *img = [[_snaps objectAtIndex:_selectedIndex] objectForKey:@"image"];
   
   if (_snapView == nil) {
     _snapView = [[UIView alloc] initWithFrame:self.view.frame];
@@ -100,6 +121,7 @@
 - (void)hideSnap {
 
   [[NSNotificationCenter defaultCenter] postNotificationName:@"Stop Camera Server" object:nil];
+//  [[CameraServer server] shutdown];
   NSString *filepath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/video.mp4"];
   NSLog(@"File: %@", filepath);
   NSURL *fileURL = [NSURL fileURLWithPath:filepath];
@@ -113,6 +135,7 @@
   [moviePlayerController.moviePlayer play];
   [moviePlayerController.moviePlayer errorLog];
   NSLog(@"Error: %@", [moviePlayerController.moviePlayer errorLog]);
+  [SSNetworking sendVideo];
   [_snapView removeFromSuperview];
 }
 

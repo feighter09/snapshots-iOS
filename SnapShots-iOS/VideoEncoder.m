@@ -43,22 +43,14 @@
 
 - (void) finishWithCompletionHandler:(void (^)(void))handler
 {
-//  if ([_writer status] == AVAssetWriterStatusCompleted) {
-//    NSLog(@"Writer status: completed");
-//  } else if ([_writer status] == AVAssetWriterStatusCancelled) {
-//    NSLog(@"Writer status: cancelled");
-//  } else if ([_writer status] == AVAssetWriterStatusFailed) {
-//    NSLog(@"Writer status: failed");
-//  }
 //  if ([_writer status] != AVAssetWriterStatusWriting && [_writer status] != AVAssetWriterStatusUnknown) {
 //    [_writer finishWritingWithCompletionHandler: handler];
 //    [_writerInput setMarksOutputTrackAsEnabled:YES];
 //    [_writerInput markAsFinished];
 //  }
-  
-  [_writer finishWritingWithCompletionHandler:handler];
-//  [_writerInput setMarksOutputTrackAsEnabled:YES];
-  [_writerInput markAsFinished];
+    [_writer finishWritingWithCompletionHandler:handler];
+//    [_writerInput setMarksOutputTrackAsEnabled:YES];
+    [_writerInput markAsFinished];
 }
 
 - (BOOL) encodeFrame:(CMSampleBufferRef) sampleBuffer

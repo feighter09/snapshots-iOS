@@ -13,7 +13,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [[CameraServer server] startup];
 
   [[NSNotificationCenter defaultCenter] addObserverForName:@"Start Camera Server" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
     [[CameraServer server] startup];
